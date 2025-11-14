@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Deploy on Railway
+
+This application is configured to deploy on Railway using Docker.
+
+### Required Environment Variables
+
+Make sure to set these environment variables in your Railway project:
+
+- `TURSO_CONNECTION_URL` - Your Turso database connection URL
+- `TURSO_AUTH_TOKEN` - Your Turso database authentication token
+- `PORT` - Railway automatically sets this, but defaults to 3000
+
+### Deployment Steps
+
+1. Connect your GitHub repository to Railway
+2. Railway will automatically detect the Dockerfile
+3. Add the required environment variables in Railway dashboard
+4. Deploy!
+
+The application will automatically:
+- Build using `bun run build`
+- Start on the port provided by Railway
+- Listen on `0.0.0.0` to accept external connections
