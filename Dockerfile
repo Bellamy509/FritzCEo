@@ -52,15 +52,19 @@ RUN npm config set legacy-peer-deps true \
  && npm config set audit false
 
 # ───────────────────────────────────────────
-# 6.1. install dependencies
+# 6.1. Copy package files first for better caching
+# ───────────────────────────────────────────
+COPY package.json bun.lock* ./
+
+# ───────────────────────────────────────────
+# 6.2. Install all dependencies (including devDependencies for build)
+# ───────────────────────────────────────────
+RUN bun install --frozen-lockfile
+
+# ───────────────────────────────────────────
+# 6.3. Copy the rest of the application
 # ───────────────────────────────────────────
 COPY . /home/user/app
-RUN bun install
-
-RUN bun install motion tailwindcss-animate tw-animate-css tailwind-merge clsx lucide-react react-icons
-RUN bun install react-fast-marquee cobe @tabler/icons-react react-rough-notation @headlessui/react react-intersection-observer
-RUN bun install -D eslint eslint-config-next
-RUN bun install -D @eslint/eslintrc
 
 # ───────────────────────────────────────────
 # 7. Files are already in their correct locations:
