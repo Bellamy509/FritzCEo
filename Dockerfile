@@ -83,6 +83,7 @@ EXPOSE $PORT
 
 # ───────────────────────────────────────────
 # 10. Start the application
+#    Railway sets PORT automatically, and Next.js needs to listen on 0.0.0.0
 # ───────────────────────────────────────────
-CMD ["sh", "-c", "next start -p ${PORT:-3000}"]
+CMD ["sh", "-c", "next start -H 0.0.0.0 -p ${PORT:-3000}"]
 
