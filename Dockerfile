@@ -63,20 +63,10 @@ RUN bun install -D eslint eslint-config-next
 RUN bun install -D @eslint/eslintrc
 
 # ───────────────────────────────────────────
-# 7.1. Copy visual-edits folder into src/visual-edits
+# 7. Files are already in their correct locations:
+#    - src/visual-edits/ (already exists)
+#    - src/components/ErrorReporter.tsx (already exists)
+#    - src/app/global-error.tsx (already exists)
+#    - src/app/layout.tsx (already exists)
 # ───────────────────────────────────────────
-RUN mkdir -p /home/user/app/src/visual-edits
-RUN mv visual-edits/ /home/user/app/src/
-
-# ───────────────────────────────────────────
-# 7.2. Copy ErrorReporter.tsx into src/components
-# ───────────────────────────────────────────
-RUN mv ErrorReporter.tsx /home/user/app/src/components/ErrorReporter.tsx
-RUN mv global-error.tsx /home/user/app/src/app/global-error.tsx
-
-# ───────────────────────────────────────────
-# Clean up
-# ───────────────────────────────────────────
-RUN rm src/app/layout.tsx
-RUN mv layout.tsx src/app/
 
