@@ -70,3 +70,19 @@ RUN bun install -D @eslint/eslintrc
 #    - src/app/layout.tsx (already exists)
 # ───────────────────────────────────────────
 
+# ───────────────────────────────────────────
+# 8. Build the Next.js application
+# ───────────────────────────────────────────
+RUN bun run build
+
+# ───────────────────────────────────────────
+# 9. Expose port (Railway will set PORT env var)
+# ───────────────────────────────────────────
+ENV PORT=3000
+EXPOSE $PORT
+
+# ───────────────────────────────────────────
+# 10. Start the application
+# ───────────────────────────────────────────
+CMD ["sh", "-c", "next start -p ${PORT:-3000}"]
+
